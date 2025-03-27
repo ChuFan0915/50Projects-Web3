@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+        }
+        .container{
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        .img-box{
+            height: 70vh;
+            width: 300px;
+            text-align: center;
+            flex: 1;
+            margin: 0 20px;
+            transition: flex ease 0.3s;
+        }
+        .img-box img{
+            height: 100%;
+            width: 100%;
+            border-radius: 20px;
+            object-fit: cover;
+            transition: transform ease 0.3s;
+            /* 给图片的移动添加动画 */
+        }
+        .img-box span{
+            font-size: 20px;
+            color: skyblue;
+            opacity: 0;
+            transition: opacity ease-in 0.3s;
+        }
+        /* 添加激活样式 */
+        .img-box.active{
+            flex:5;
+            /* 激活后的图片盒子一个人占五分 */
+        }
+       
+        .img-box.active span{
+            opacity: 0.7;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="img-box">
+            <img src="../images/su7.jfif" alt="">
+            <span>Change This world</span>
+        </div>
+        <div class="img-box">
+            <img src="../images/hill.jfif" alt="">
+            <span>How Can Success</span>
+        </div>
+        <div class="img-box">
+            <img src="../images/flower.jfif" alt="">
+            <span>Sunshie will Get</span>
+        </div>
+        <div class="img-box">
+            <img src="../images/sister.jfif" alt="">
+            <span>Love is all in</span>
+        </div>
+    </div>
+</body>
+<script>
+    // 获取所有图片的dom实例
+    const panels=document.querySelectorAll('.img-box');
+    panels.forEach(item=>{
+        item.addEventListener('click',()=>{
+            
+            // 首先要先移除激活的样式，再进行定义
+            removeClass()
+            item.classList.add("active");
+            
+        }) 
+    })
+    function removeClass(){
+        panels.forEach(item=>{
+            item.classList.remove("active");
+        })
+    }
+</script>
+</html>
