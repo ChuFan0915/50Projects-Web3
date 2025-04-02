@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+        }
+        .container{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: skyblue;
+        }
+        .search{
+            display: flex;
+            align-items: center;
+        }
+        .input{
+            outline: none;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 0px;
+            transition: width ease-in 0.3s;
+            height: 30px;
+            padding: 0;
+            
+        }
+        .btn{
+            background-image: url('https://th.bing.com/th/id/OIP.t1NpyhaiL4gouIOOsF6z0AHaHa?w=250&h=250&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="search">
+        <input type="text" placeholder="请开始搜索" class="input">
+        <button class="btn">
+        </button>
+    </div>
+    </div>
+</body>
+<script>
+    const btn=document.querySelector('.btn')
+    const input=document.querySelector('.input')
+    btn.addEventListener('click',function(){
+        if(input.style.width==='0px'){
+            input.style.width=200+'px'
+        }else{
+            input.style.width=0
+            
+        }
+    })
+</script>
+</html>

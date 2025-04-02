@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            height: 100vh;
+            width: 100%;
+            background-image: url('../images/bg.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            transition: opacity ease-in 0.3s;
+            filter: blur(30px); 
+        }
+        .load-text{
+            font-size: 40px;
+            color: white;
+            opacity: 1;
+            font-weight: bold;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            /* 使其元素在页面中垂直居中 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    </div>
+    <div class="load-text">0%</div>
+</body>
+<script>
+    // 获取当前元素
+    const bg=document.querySelector('.container')
+    const text=document.querySelector('.load-text')
+    let load=1
+    // 新增一个变量用来记录文字的变化
+    const TimeText=setInterval(() => {
+        blurClass()
+    }, 30);
+    function blurClass(){
+        load++
+        if(load>99){
+            clearInterval(TimeText)
+        }
+        bg.style.opacity=scale(load,0,100,0.2,1)
+        bg.style.filter= `blur(${scale(load, 0, 100, 30, 0)}px)`;
+        text.style.opacity=scale(load,0,100,1,0.09)
+        // 不断的更新文字
+        text.innerHTML=`${load}%`
+
+    }
+    // 映射函数，load的值变化映射到其他的值变化
+    function scale(num, in_min, in_max, out_min, out_max) {
+            return ((num - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;
+        }
+   
+</script>
+</html>

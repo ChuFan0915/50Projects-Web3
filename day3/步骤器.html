@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>步骤器</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: palevioletred;
+            
+        }
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .progress-con{
+            display: flex;
+            width: 500px;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        .progress-con::before {
+            width: 100%;
+            height: 5px;
+            background-color:  #e0e0e0;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            z-index: -1;
+            content: '';
+
+        }
+        .progress{
+            width: 0;
+            height: 5px;
+            background-color: #3498db;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            z-index: -1;
+            transition: width ease 0.3s;
+        }
+        /* 圆角实现 */
+        .circles{
+            height: 30px;
+            width: 30px;
+            line-height: 30px;
+            border: 3px solid pink;
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            border-radius: 50%;
+            background: #ccc;
+            transition: all 0.3s ease;
+        }
+        .circles.active{
+            border-color: #3498db;
+        }
+        button{
+            padding:  5px 10px;
+            border-radius: 10px;
+            background-color: #3498db;
+            border: none;
+            cursor: pointer;
+        }
+        button:disabled{
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+     
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="progress-con">
+        <div class="progress"></div>
+        <div class="circles active">1</div>
+        <div class="circles">2</div>
+        <div class="circles">3</div>
+        <div class="circles">4</div>
+    </div>
+    <div class="btn-con">
+        <button id="Prev">Prev</button>
+        <button id="Next">Next</button>
+    </div>
+    </div>
+</body>
+<script>
+    // 先获取按钮
+    const Prev=document.querySelector('#Prev')
+    const Next=document.querySelector('#Next')
+    const circles=document.querySelectorAll('.circles')
+    // 先编写按钮的逻辑
+    let activeIndex=1
+    // 记录步骤器的移动
+    Prev.addEventListener('click',()=>{
+        activeIndex--
+        if(activeIndex<1){
+            activeIndex=1
+            // 调用动态类名的函数
+        }
+        UpdatedHandler()
+    })
+    Next.addEventListener('click',()=>{
+        activeIndex++
+        if(activeIndex>=circles.length){
+            activeIndex=circles.length
+        }
+        UpdatedHandler()
+        
+        
+    })
+    // 编写动态类名函数
+    function UpdatedHandler(){
+        circles.forEach((item,index)=>{
+            if(index<activeIndex){
+                item.classList.add('active')
+            }else{
+                item.classList.remove('active')
+            }
+        })
+        const prowidth=((activeIndex-1)/(circles.length-1)) *100
+        const progress=document.querySelector('.progress')
+        progress.style.width=prowidth+'%'
+    }
+    
+    
+</script>
+</html>
