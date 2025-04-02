@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            overflow-x: hidden;
+            /* 隐藏底部左右栏 */
+        
+        }
+        h2{
+            margin-bottom: 30px;
+        }
+        .box-container{
+            display: flex;
+            gap: 20px;
+            flex-direction: column;
+            align-items: center;
+        }
+        .box{
+            width: 500px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: skyblue;
+            font-size: 20px;
+            transform: translateX(300%);
+            transition: transform ease 0.3s;
+            border-radius: 20px;
+            box-shadow: 0 10px 15px black;
+        }
+        .box:nth-child(even){
+            transform: translateX(-300%);
+        }
+        /* 代表他的孩子中为奇数的移动为反方向 */
+        .box.active{
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <h2>Scool the Animation</h2>
+    <div class="box-container">
+        <div class="box">Remeber the feeling</div>
+        <div class="box">Remeber the feeling</div>
+        <div class="box">Remeber the feeling</div>
+        <div class="box">Remeber the feeling</div>
+        <div class="box">Remeber the feeling</div>
+        <div class="box">Remeber the feeling</div>
+        <div class="box">Remeber the feeling</div>
+        <div class="box">Remeber the feeling</div>
+        <div class="box">Remeber the feeling</div>
+        <div class="box">Remeber the feeling</div>
+    </div>
+</body>
+<script>
+    const boxs=document.querySelectorAll('.box')
+    document.addEventListener("DOMContentLoaded", scrollHandler);
+    // 保证页面初始加载时触发scrollhandler函数
+    window.addEventListener('scroll',scrollHandler)
+    // 记录问题之一 事件写错 以及不要写（）不然会立即调用
+    function scrollHandler(){
+        // 首先我们拿到什么时候激发事件窗口变化值
+        const TargetY=window.innerHeight/5*4
+        boxs.forEach(item=>{
+            const itemY=item.getBoundingClientRect().top
+            // 调用原生方法查看元素相对对视口的高度
+            if(itemY<TargetY){
+                item.classList.add('active')
+            }else{
+                item.classList.remove('active')
+            }
+        })
+    }
+</script>
+</html>
