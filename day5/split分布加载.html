@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .split{
+            flex: 1;
+            opacity: 0.8;
+            transition: flex ease 0.4s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .split:first-child{
+            background-image: url('https://www.apple.com.cn/v/iphone/home/cb/images/overview/consider/innovation__os9bmmo3mjee_xlarge_2x.jpg');
+            height: 100vh;
+            background-color: #D8BFD8;
+        }
+        .split button{
+            padding: 10px 10px;
+            border: none;
+            border-radius: 10px;
+            background-color: seagreen;
+            cursor: pointer;
+        }
+        .split:last-child{
+            background-image: url('https://images.samsung.com.cn/is/image/samsung/assets/cn/2501/home/HOME_P3_MX-KV_1440x810_pc.jpg?$1440_810_JPG$');
+            height: 100vh;
+            color: white;
+        }
+        .split.active{
+            flex: 2.5;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="split">
+            <h1>iPhone 此刻拥有</h1>
+            <button>Buy Now</button>
+        </div>
+        <div class="split">
+            <h1>Samsung 追逐光影的故事</h1>
+            <button>Buy Now</button>
+        </div>
+    </div>
+</body>
+<script>
+const splits=document.querySelectorAll('.split');
+const container=document.querySelector('.container')
+splits.forEach(item=>{
+    item.addEventListener('mouseenter',()=>{
+        splits.forEach(s => s.classList.remove("active")); 
+      item.classList.add('active')
+    })
+})
+container.addEventListener('mouseleave',()=>{
+    splits.forEach(item=>{
+        item.classList.remove('active')
+    })
+})
+
+
+
+</script>
+</html>
+<!-- tips
+Q1：怎么样监视鼠标的移入事件，我有点遗忘
+Q2:给他添加一个active属性，鼠标移入，盒子宽度站页面的3/2，该怎么写？flex吗？
+
+
+-->
