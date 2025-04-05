@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Animated Login</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: skyblue;
+      font-family: sans-serif;
+    }
+
+    .container {
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    h2 {
+      font-size: 30px;
+      text-shadow: 0 10px 10px pink;
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    form.form {
+      width: 400px;
+      background-color: #2b4e6c;
+      border-radius: 10px;
+      padding: 40px;
+    }
+
+    .form-con {
+      width: 100%;
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    .form-con input {
+      width: 100%;
+      padding: 10px 0;
+      border: none;
+      border-bottom: 2px solid #ccc;
+      background-color: transparent;
+      color: white;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .form-con label {
+      position: absolute;
+      top: 10px;
+      left: 0;
+      color: white;
+    }
+
+    .form-con label span {
+      display: inline-block;
+      font-size: 16px;
+      min-width: 5px;
+      transition: 0.3s ease;
+    }
+
+    /* Label 动画触发：获得焦点  */
+    .form-con input:focus + label span {
+      transform: translateY(-20px);
+      color: #03e9f4;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      background-color: #03e9f4;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #029ec4;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Please Login</h2>
+    <form class="form">
+      <div class="form-con">
+        <input type="text" id="account" required />
+        <label for="account">Email</label>
+      </div>
+      <div class="form-con">
+        <input type="password" id="password" required />
+        <label for="password">Password</label>
+      </div>
+      <button class="btn" type="submit">Login</button>
+    </form>
+  </div>
+  <!DOCTYPE html>
+  <html lang="en">
+  
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+      <style>
+          body {
+              margin: 0;
+              padding: 0;
+  
+          }
+  
+          .container {
+              height: 100vh;
+              background-color: skyblue;
+              width: 100%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+  
+  
+          }
+  
+          h2 {
+              font-size: 30px;
+              text-shadow: 0 10px 10px pink;
+              color: white;
+              margin-bottom: 20px;
+          }
+  
+          .form {
+              width: 400px;
+              background-color: #2b4e6c;
+              border-radius: 10px;
+              padding: 40px;
+          }
+  
+          .form-con {
+              width: 100%;
+              margin-bottom: 20px;
+              position: relative;
+              padding: 10px;
+          }
+  
+          .form-con input {
+              border: 0;
+              border-bottom: 2px solid #ccc;
+              background-color: transparent;
+              width: 90%;
+              outline: none;
+          }
+  
+          .form label {
+              position: absolute;
+              top: 0;
+              left: 10px;
+          }
+  
+          .form label span {
+              transition: all ease 0.3s;
+          }
+  
+          .form-con input:focus+label span,
+          .form-con input:valid+label span {
+              transform: translateY(-20px);
+              color: #03e9f4;
+          }
+      </style>
+  </head>
+  
+  <body>
+      <div class="container">
+          <h2>Please Login</h2>
+          <div class="form">
+              <div class="form-con">
+                  <label for="account">Email</label>
+                  <input type="text" id="account">
+              </div>
+              <div class="form-con">
+                  <label for="password">Password</label>
+                  <input type="password" id="password">
+              </div>
+          </div>
+      </div>
+  </body>
+  <script>
+      const labels = document.querySelectorAll('.form label');
+      labels.forEach(label => {
+          label.innerHTML = label.innerText
+              .split('')
+              .map((letter, idx) => `<span style="transition-delay:${idx * 50}ms">${letter}</span>`)
+              .join('');
+      });
+  </script>
+  
+  </html>
+
+</body>
+</html>
